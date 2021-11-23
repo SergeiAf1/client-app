@@ -6,7 +6,6 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 import lombok.extern.log4j.Log4j;
 
-import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class Receiver {
     private Connection connection;
     private Channel channel;
 
-    @EJB
+    @Inject
     private TariffBean tariffBean;
 
     public void getMessage() throws IOException, TimeoutException {
@@ -34,7 +33,7 @@ public class Receiver {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             log.info(" !!! Received '" + message + "'");
             try {
-                Thread.sleep(7000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 log.warn(e.getMessage());
                 e.printStackTrace();

@@ -24,7 +24,8 @@ public class TariffBean {
     @Inject
     private Receiver receiver;
 
-    private final Loader loader = Loader.getInstance();
+    @Inject
+    private Loader loader;
 
     @Getter
     @Setter

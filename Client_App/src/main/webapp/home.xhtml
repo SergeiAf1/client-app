@@ -8,10 +8,44 @@
 >
 
 <h:head>
-    <title>Hello</title>
+    <title>Tariffs</title>
 </h:head>
+
 <h:body>
-<h2>Hello</h2>
+
+    <p:dataGrid var="tariff" value="#{tariffBean.tariffs}" columns="1" layout="grid" id="tariffs">
+
+        <f:facet name="header">
+            <h2 style="background-color: violet">Tariffs</h2>
+        </f:facet>
+
+        <p:panel header="#{tariff.tariffName}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%; background-color: violet">
+
+                <h:outputText value="Tariff price: #{tariff.price}"/>
+                <h:outputText value="Available options for #{tariff.tariffName} -tariff: "/>
+
+                <p:dataTable value="#{tariff.options}" var="option" style="background-color: violet">
+
+                    <p:column headerText="Option name" style="text-align: center">
+                        <h:outputText value="#{option.name}"/>
+                    </p:column>
+
+                    <p:column headerText="Option price" style="text-align: center">
+                        <h:outputText value="#{option.price}"/>
+                    </p:column>
+
+                    <p:column headerText="Connection price for option" style="text-align: center">
+                        <h:outputText value="#{option.connectionPrice}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </h:panelGrid>
+        </p:panel>
+
+    </p:dataGrid>
+
+    <p:poll update="tariffs"/>
 
 </h:body>
 </html>
